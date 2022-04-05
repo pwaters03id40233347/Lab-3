@@ -61,14 +61,14 @@ public class DataUtilitiesTest {
 	// CalculateColumnTotal
 
 	@Test
-	public void testCalculateColumnTotalTC1() {
+	public void testCalculateColumnTotalReturnsExpectedValueWithValidDataAndColumn() {
 		values2D = validTestValues;
 		assertEquals("calculateColumnTotal: Did not return the expected output.",
 				DataUtilities.calculateColumnTotal(values2D, 3), 499.0);
 	}
 
 	@Test
-	public void testCalculateColumnTotalTC2() {
+	public void testCalculateColumnTotalReturnsZeroWithInvalidColumn() {
 		try {
 			values2D = validTestValues;
 			assertEquals("calculateColumnTotal: Did not return the expected output.",
@@ -79,34 +79,36 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	public void testCalculateColumnTotalTC3() {
+	public void testCalculateColumnTotalExceptionThrownWithNullDataAndValidColumn() {
 		try {
 			DataUtilities.calculateColumnTotal(null, 0);
 			fail("No exception thrown-Expected outcome was: a thrown exception of type: IllegalArgumentException");
 		} catch (Exception e) {
-			assertTrue("Incorrect exception type thrown"+e.getClass(), e.getClass().equals(IllegalArgumentException.class));
+			assertTrue("Incorrect exception type thrown" + e.getClass(),
+					e.getClass().equals(IllegalArgumentException.class));
 		}
 	}
 
 	@Test
-	public void testCalculateColumnTotalTC4() {
+	public void testCalculateColumnTotalExceptionThrownWithNullDataAndInvalidColumn() {
 		try {
 			DataUtilities.calculateColumnTotal(null, -80);
 			fail("No exception thrown-Expected outcome was: a thrown exception of type: IllegalArgumentException");
 		} catch (Exception e) {
-			assertTrue("Incorrect exception type thrown"+e.getClass(), e.getClass().equals(IllegalArgumentException.class));
+			assertTrue("Incorrect exception type thrown" + e.getClass(),
+					e.getClass().equals(IllegalArgumentException.class));
 		}
 	}
 
 	@Test
-	public void testCalculateColumnTotalTC5() {
+	public void testCalculateColumnTotalReturnsZeroWithEmptyDataAndValidColumn() {
 		values2D = validTestValues;
 		assertEquals("calculateColumnTotal: Did not return the expected output.",
 				DataUtilities.calculateColumnTotal(emptyValues, 0), 0.0);
 	}
 
 	@Test
-	public void testCalculateColumnTotalTC6() {
+	public void testCalculateColumnTotalReturnsZeroWithEmptyDataAndInvalidColumn() {
 		values2D = validTestValues;
 		assertEquals("calculateColumnTotal: Did not return the expected output.",
 				DataUtilities.calculateColumnTotal(emptyValues, -452), 0.0);
@@ -116,14 +118,14 @@ public class DataUtilitiesTest {
 	// CalculateRowTotal
 
 	@Test
-	public void testCalculateRowTotalTC1() {
+	public void testCalculateRowTotalReturnsExpectedValueWithValidDataAndRow() {
 		values2D = validTestValues;
-		assertEquals("calculateRowTotal: Did not return the expected output.",
-				105.0, DataUtilities.calculateRowTotal(values2D, 0));
+		assertEquals("calculateRowTotal: Did not return the expected output.", 105.0,
+				DataUtilities.calculateRowTotal(values2D, 0));
 	}
 
 	@Test
-	public void testCalculateRowTotalTC2() {
+	public void testCalculateRowTotalReturnsZeroWithInvalidRow() {
 		try {
 			values2D = validTestValues;
 			assertEquals("calculateRowTotal: Did not return the expected output.",
@@ -134,34 +136,36 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	public void testCalculateRowTotalTC3() {
+	public void testCalculateRowTotalExceptionThrownWithNullDataAndValidRow() {
 		try {
 			DataUtilities.calculateRowTotal(null, 0);
 			fail("No exception thrown-Expected outcome was: a thrown exception of type: IllegalArgumentException");
 		} catch (Exception e) {
-			assertTrue("Incorrect exception type thrown"+e.getClass(), e.getClass().equals(IllegalArgumentException.class));
+			assertTrue("Incorrect exception type thrown" + e.getClass(),
+					e.getClass().equals(IllegalArgumentException.class));
 		}
 	}
 
 	@Test
-	public void testCalculateRowTotalTC4() {
+	public void testCalculateRowTotalExceptionThrownWithNullDataAndInvalidRow() {
 		try {
 			DataUtilities.calculateRowTotal(null, -80);
 			fail("No exception thrown-Expected outcome was: a thrown exception of type: IllegalArgumentException");
 		} catch (Exception e) {
-			assertTrue("Incorrect exception type thrown"+e.getClass(), e.getClass().equals(IllegalArgumentException.class));
+			assertTrue("Incorrect exception type thrown" + e.getClass(),
+					e.getClass().equals(IllegalArgumentException.class));
 		}
 	}
 
 	@Test
-	public void testCalculateRowTotalTC5() {
+	public void testCalculateRowTotalReturnsZeroWithEmptyDataAndValidRow() {
 		values2D = validTestValues;
 		assertEquals("calculateColumnTotal: Did not return the expected output.",
 				DataUtilities.calculateRowTotal(emptyValues, 0), 0.0);
 	}
 
 	@Test
-	public void testCalculateRowTotalTC6() {
+	public void testCalculateRowTotalReturnsZeroWithEmptyDataAndInvalidRow() {
 		values2D = validTestValues;
 		assertEquals("calculateColumnTotal: Did not return the expected output.",
 				DataUtilities.calculateRowTotal(emptyValues, -452), 0.0);
@@ -171,15 +175,13 @@ public class DataUtilitiesTest {
 	// CreateNumberArray
 
 	@Test
-	public void testCreateNumberArrayTC1() {
+	public void testCreateNumberArrayAllValuesCopiedAcrossToNewArrayWithValidData() {
 		double[] doubles = { 1.0, 2.0, -1.0, -2.0, -1000.0, 45.0 };
-		
 
 		Number[] nums = DataUtilities.createNumberArray(doubles);
-		
-		
-		for (Number num  : nums)
-            System.out.println(num);
+
+		for (Number num : nums)
+			System.out.println(num);
 		assertEquals("createNumberArray: Index 0 did not contain the expected value.", doubles[0], nums[0]);
 		assertEquals("createNumberArray: Index 1 did not contain the expected value.", doubles[1], nums[1]);
 		assertEquals("createNumberArray: Index 2 did not contain the expected value.", doubles[2], nums[2]);
@@ -189,7 +191,7 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	public void testCreateNumberArrayTC2() {
+	public void testCreateNumberArrayExceptionThrownWithNullData() {
 		try {
 			Number[] nums = DataUtilities.createNumberArray(null);
 			fail("No exception thrown-Expected outcome was: a thrown exception of type: IllegalArgumentException");
@@ -199,7 +201,7 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	public void testCreateNumberArrayTC3() {
+	public void testCreateNumberArrayEmptyDataCreatesEmptyArrayOfLengthZero() {
 		double[] empty = {};
 		Number[] nums = DataUtilities.createNumberArray(empty);
 		assertEquals("createNumberArray: Did not contain the expected output.", nums.length, 0);
@@ -209,7 +211,7 @@ public class DataUtilitiesTest {
 	// CreateNumberArray2D
 
 	@Test
-	public void testCreateNumberArray2DTC1() {
+	public void testCreateNumberArray2DAllValuesCopiedAcrossToNewArrayWithValidData() {
 		double[][] doubles = { { 1.0, 2.0, 3.0 }, { -8.0, -43.0, 200.0 } };
 
 		Number[][] nums = DataUtilities.createNumberArray2D(doubles);
@@ -222,17 +224,18 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	public void testCreateNumberArray2DTC2() {
+	public void testCreateNumber2DArrayExceptionThrownWithNullData() {
 		try {
 			Number[][] nums = DataUtilities.createNumberArray2D(null);
 			fail("No exception thrown-Expected outcome was: a thrown exception of type: IllegalArgumentException");
 		} catch (Exception e) {
-			assertTrue("Incorrect exception type thrown"+e.getClass(), e.getClass().equals(IllegalArgumentException.class));
+			assertTrue("Incorrect exception type thrown" + e.getClass(),
+					e.getClass().equals(IllegalArgumentException.class));
 		}
 	}
 
 	@Test
-	public void testCreateNumberArray2DTC3() {
+	public void testCreateNumber2DArrayEmptyDataCreatesEmptyArrayOfLengthTwo() {
 		double[][] empty = { {}, {} };
 		Number[][] nums = DataUtilities.createNumberArray2D(empty);
 		assertEquals("createNumberArray2D: Did not contain the expected output.", nums.length, 2);
@@ -242,7 +245,7 @@ public class DataUtilitiesTest {
 	// GetCumulativePercentages
 
 	@Test
-	public void testGetCumulativePercentagesTC1() {
+	public void testGetCumulativePercentagesCumulativePercentagesCorrectWithValidData() {
 		DefaultKeyedValues keyedValues = new DefaultKeyedValues();
 		keyedValues.addValue((Comparable) 0, 6.0);
 		keyedValues.addValue((Comparable) 1, 11.0);
@@ -251,13 +254,13 @@ public class DataUtilitiesTest {
 		keyedValues.addValue((Comparable) 4, 1.0);
 		keyedValues.addValue((Comparable) 5, 9.0);
 		KeyedValues objectUnderTest = DataUtilities.getCumulativePercentages((KeyedValues) keyedValues);
-	
-		for (int i = 0 ; i < objectUnderTest.getItemCount();i++){
-            System.out.println("KEY: "+objectUnderTest.getKey(i));
-            System.out.println("VALUE: "+objectUnderTest.getValue(i));
-        }
+
+		for (int i = 0; i < objectUnderTest.getItemCount(); i++) {
+			System.out.println("KEY: " + objectUnderTest.getKey(i));
+			System.out.println("VALUE: " + objectUnderTest.getValue(i));
+		}
 		assertEquals("getCumulativePercentages: Did not contain the expected output.", 0.23076923076923078,
-				(double) objectUnderTest.getValue(0));	
+				(double) objectUnderTest.getValue(0));
 		assertEquals("getCumulativePercentages: Did not contain the expected output.", 0.6538461538461539,
 				(double) objectUnderTest.getValue(1));
 		assertEquals("getCumulativePercentages: Did not contain the expected output.", 0.7692307692307693,
@@ -271,18 +274,19 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	public void testGetCumulativePercentagesTC2() {
+	public void testGetCumulativePercentagesExceptionThrownWithNullData() {
 		try {
 			DefaultKeyedValues keyedValues = null;
 			KeyedValues objectUnderTest = DataUtilities.getCumulativePercentages((KeyedValues) keyedValues);
 			fail("No exception thrown-Expected outcome was: a thrown exception of type: IllegalArgumentException");
 		} catch (Exception e) {
-			assertTrue("Incorrect exception type thrown"+e.getClass(), e.getClass().equals(IllegalArgumentException.class));
+			assertTrue("Incorrect exception type thrown" + e.getClass(),
+					e.getClass().equals(IllegalArgumentException.class));
 		}
 	}
 
 	@Test
-	public void testGetCumulativePercentagesTC3() {
+	public void testGetCumulativePercentagesItemCountIsZeroWithEmptyData() {
 		DefaultKeyedValues keyedValues = new DefaultKeyedValues();
 		KeyedValues objectUnderTest = DataUtilities.getCumulativePercentages((KeyedValues) keyedValues);
 		assertEquals("getCumulativePercentages: Did not contain the expected output.", 0,
