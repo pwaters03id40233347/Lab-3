@@ -321,16 +321,14 @@ public class RangeTest {
 	@Test
 	public void testCombineRange1Null() {
 		rangeObjectUnderTest = new Range(-100, 300);
-		assertEquals("combine: Did not return the expected output.", Range.combine(null, rangeObjectUnderTest),
-				rangeObjectUnderTest);
+		assertEquals("combine: Did not return the expected output.", rangeObjectUnderTest, Range.combine(null, rangeObjectUnderTest));
 
 	}
 
 	@Test
 	public void testCombineRange2Null() {
 		rangeObjectUnderTest = new Range(-100, 300);
-		assertEquals("combine: Did not return the expected output.", Range.combine(rangeObjectUnderTest, null),
-				rangeObjectUnderTest);
+		assertEquals("combine: Did not return the expected output.", rangeObjectUnderTest, Range.combine(rangeObjectUnderTest, null));
 	}
 
 	@Test
@@ -338,66 +336,49 @@ public class RangeTest {
 		assertEquals("combine: Did not return the expected output.", Range.combine(null, null), null);
 	}
 
-	@Test
-	public void testCombineRange1And2Valid() {
-		rangeObjectUnderTest = new Range(-100, 300);
-		rangeObjectUnderTest2 = new Range(-200, 200);
-		rangeObjectUnderTest3 = new Range(-200, 300);
-		assertEquals("combine: Did not return the expected output.",
-				Range.combine(rangeObjectUnderTest, rangeObjectUnderTest2), rangeObjectUnderTest3);
-	}
-
-	// expandToInclude
-
-	@Test
-	public void testExpandToIncludeNullRange() {
-		rangeObjectUnderTest = new Range(7, 7);
-		assertEquals("expandToInclude: Did not return the expected output.", Range.expandToInclude(null, 7),
-				rangeObjectUnderTest);
-	}
-
-	@Test
-	public void testExpandToIncludeLowerRangeBoundValue() {
-		rangeObjectUnderTest = new Range(-100, 100);
-		rangeObjectUnderTest2 = new Range(-200, 100);
-		assertEquals("expandToInclude: Did not return the expected output.",
-				Range.expandToInclude(rangeObjectUnderTest, -200), rangeObjectUnderTest2);
-	}
-
-	@Test
-	public void testExpandToIncludeHigherRangeBoundValue() {
-		rangeObjectUnderTest = new Range(-100, 100);
-		rangeObjectUnderTest2 = new Range(-100, 200);
-		assertEquals("expandToInclude: Did not return the expected output.",
-				Range.expandToInclude(rangeObjectUnderTest, 200), rangeObjectUnderTest2);
-	}
-
-	@Test
-	public void testExpandToIncludeValueWithinRange() {
-		rangeObjectUnderTest = new Range(-100, 100);
-		assertEquals("expandToInclude: Did not return the expected output.",
-				Range.expandToInclude(rangeObjectUnderTest, 50), rangeObjectUnderTest);
-	}
-
-	// expand
-
-	@Test
-	public void testExpandRangeNull() {
-		try {
-			Range.expand(null, 0.25, 0.5);
-			fail("No exception thrown-Expected outcome was: a thrown exception of type: IllegalArgumentException");
-		} catch (Exception e) {
-			assertTrue("Incorrect exception type thrown" + e.getClass(),
-					e.getClass().equals(IllegalArgumentException.class));
-		}
-	}
+	
+	  @Test public void testCombineRange1And2Valid() { rangeObjectUnderTest = new
+	  Range(-100, 300); rangeObjectUnderTest2 = new Range(-200, 200);
+	  rangeObjectUnderTest3 = new Range(-200, 300);
+	  assertEquals("combine: Did not return the expected output.", rangeObjectUnderTest3, Range.combine(rangeObjectUnderTest, rangeObjectUnderTest2)); }
+	  
+	
+	  // expandToInclude
+	  
+	  @Test public void testExpandToIncludeNullRange() { rangeObjectUnderTest = new
+	  Range(7, 7);
+	  assertEquals("expandToInclude: Did not return the expected output.",
+	  Range.expandToInclude(null, 7), rangeObjectUnderTest); }
+	  
+	  @Test public void testExpandToIncludeLowerRangeBoundValue() {
+	  rangeObjectUnderTest = new Range(-100, 100); rangeObjectUnderTest2 = new
+	  Range(-200, 100);
+	  assertEquals("expandToInclude: Did not return the expected output.", rangeObjectUnderTest2, Range.expandToInclude(rangeObjectUnderTest, -200)); }
+	  
+	  @Test public void testExpandToIncludeHigherRangeBoundValue() {
+	  rangeObjectUnderTest = new Range(-100, 100); rangeObjectUnderTest2 = new
+	  Range(-100, 200);
+	  assertEquals("expandToInclude: Did not return the expected output.", rangeObjectUnderTest2, Range.expandToInclude(rangeObjectUnderTest, 200)); }
+	  
+	  @Test public void testExpandToIncludeValueWithinRange() {
+	  rangeObjectUnderTest = new Range(-100, 100);
+	  assertEquals("expandToInclude: Did not return the expected output.", rangeObjectUnderTest, Range.expandToInclude(rangeObjectUnderTest, 50)); }
+	 
+	  // expand
+	  
+	  @Test public void testExpandRangeNull() { try { Range.expand(null, 0.25,
+	  0.5);
+	  fail("No exception thrown-Expected outcome was: a thrown exception of type: IllegalArgumentException"
+	  ); } catch (Exception e) { assertTrue("Incorrect exception type thrown" +
+	  e.getClass(), e.getClass().equals(IllegalArgumentException.class)); } }
+	 
 
 	@Test
 	public void testExpandValidMargins() {
 		rangeObjectUnderTest = new Range(2, 6);
 		rangeObjectUnderTest2 = new Range(1, 8);
-		assertEquals("expand: Did not return the expected output.", Range.expand(rangeObjectUnderTest, 0.25, 0.5),
-				rangeObjectUnderTest2);
+		assertEquals("expand: Did not return the expected output.",
+				rangeObjectUnderTest2, Range.expand(rangeObjectUnderTest, 0.25, 0.5));
 	}
 
 	// shift
@@ -406,8 +387,7 @@ public class RangeTest {
 	public void testShiftWithBaseAndDeltaOnly() {
 		rangeObjectUnderTest = new Range(-4, 11);
 		rangeObjectUnderTest2 = new Range(6, 21);
-		assertEquals("shift: Did not return the expected output. ", Range.shift(rangeObjectUnderTest, 10.0),
-				rangeObjectUnderTest2);
+		assertEquals("shift: Did not return the expected output. ", rangeObjectUnderTest2, Range.shift(rangeObjectUnderTest, 10.0));
 	}
 
 	@Test
@@ -425,32 +405,28 @@ public class RangeTest {
 	public void testShiftWithZeroCrossingTrue() {
 		rangeObjectUnderTest = new Range(-4, 11);
 		rangeObjectUnderTest2 = new Range(6, 21);
-		assertEquals("shift: Did not return the expected output. ", Range.shift(rangeObjectUnderTest, 10.0, true),
-				rangeObjectUnderTest2);
+		assertEquals("shift: Did not return the expected output. ", rangeObjectUnderTest2, Range.shift(rangeObjectUnderTest, 10.0, true));
 	}
 
 	@Test
 	public void testShiftWithZeroCrossingFalse() {
 		rangeObjectUnderTest = new Range(-23, -4);
 		rangeObjectUnderTest2 = new Range(-13, 0);
-		assertEquals("shift: Did not return the expected output. ", Range.shift(rangeObjectUnderTest, 10.0, false),
-				rangeObjectUnderTest2);
+		assertEquals("shift: Did not return the expected output. ", rangeObjectUnderTest2, Range.shift(rangeObjectUnderTest, 10.0, false));
 	}
 
 	@Test
 	public void testShiftWithNoZeroCrossingValue0() {
 		rangeObjectUnderTest = new Range(0, 19);
 		rangeObjectUnderTest2 = new Range(10, 29);
-		assertEquals("shift: Did not return the expected output. ", Range.shift(rangeObjectUnderTest, 10.0, false),
-				rangeObjectUnderTest2);
+		assertEquals("shift: Did not return the expected output. ", rangeObjectUnderTest2, Range.shift(rangeObjectUnderTest, 10.0, false));
 	}
 
 	@Test
 	public void testShiftWithZeroCrossingValue0() {
 		rangeObjectUnderTest = new Range(0, 19);
 		rangeObjectUnderTest2 = new Range(10, 29);
-		assertEquals("shift: Did not return the expected output. ", Range.shift(rangeObjectUnderTest, 10.0, true),
-				rangeObjectUnderTest2);
+		assertEquals("shift: Did not return the expected output. ", rangeObjectUnderTest2, Range.shift(rangeObjectUnderTest, 10.0, true));
 	}
 
 	@Test
