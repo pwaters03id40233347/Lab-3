@@ -273,43 +273,43 @@ public class RangeTest {
 	// Constrain
 
 	@Test
-	public void testConstrainReturnsFalseJustBelowLower() {
+	public void testConstrainReturnsExpectedJustBelowLower() {
 		rangeObjectUnderTest = new Range(-100, 100);
 		assertEquals("constrain: Did not return the expected output.", -100, rangeObjectUnderTest.constrain(-100.1),DELTA);
 	}
 
 	@Test
-	public void testConstrainReturnsTrueOnMinimum() {
+	public void testConstrainReturnsExpectedOnMinimum() {
 		rangeObjectUnderTest = new Range(-100, 100);
 		assertEquals("constrain: Did not return the expected output.", rangeObjectUnderTest.constrain(-100), -100.0,DELTA);
 	}
 
 	@Test
-	public void testConstrainReturnsTrueJustAboveMinimum() {
+	public void testConstrainReturnsExpectedJustAboveMinimum() {
 		rangeObjectUnderTest = new Range(-100, 100);
 		assertEquals("constrain: Did not return the expected output.", rangeObjectUnderTest.constrain(-99.9), -99.9,DELTA);
 	}
 
 	@Test
-	public void testConstrainReturnsTrueNominalValue() {
+	public void testConstrainReturnsExpectedNominalValue() {
 		rangeObjectUnderTest = new Range(-100, 100);
 		assertEquals("constrain: Did not return the expected output.", rangeObjectUnderTest.constrain(0.0), 0.0,DELTA);
 	}
 
 	@Test
-	public void testConstrainReturnsTrueJustBelowMaximum() {
+	public void testConstrainReturnsExpectedJustBelowMaximum() {
 		rangeObjectUnderTest = new Range(-100, 100);
 		assertEquals("constrain: Did not return the expected output.", rangeObjectUnderTest.constrain(99.9), 99.9,DELTA);
 	}
 
 	@Test
-	public void testConstrainReturnsTrueOnMaximum() {
+	public void testConstrainReturnsExpectedOnMaximum() {
 		rangeObjectUnderTest = new Range(-100, 100);
 		assertEquals("constrain: Did not return the expected output.", rangeObjectUnderTest.constrain(100), 100.0,DELTA);
 	}
 
 	@Test
-	public void testConstrainReturnsTrueJustAboveMaximum() {
+	public void testConstrainReturnsExpectedJustAboveMaximum() {
 		rangeObjectUnderTest = new Range(-100, 100);
 		assertEquals("constrain: Did not return the expected output.", rangeObjectUnderTest.constrain(100.1), 100.0,DELTA);
 	}
